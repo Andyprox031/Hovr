@@ -20,13 +20,11 @@ jobs:
 
       - name: Configurar Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
 
       - name: Aceptar licencias Android
         run: yes | sdkmanager --licenses
-
-      - name: Instalar SDK 35
-        run: |
-          sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
       - name: Preparar Gradle
         run: chmod +x gradlew
@@ -40,4 +38,5 @@ jobs:
           name: Hovr-APK
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
+          
           
